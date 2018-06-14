@@ -1,0 +1,2 @@
+json.extract! objective, :id, :description, :notes, :parent_id, :position, :subject_id, :created_at, :updated_at, :number, :objective_status_id, :project_id
+json.url objective_url(objective, format: :json)

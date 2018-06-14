@@ -1,0 +1,46 @@
+<div class="has-limit">
+  <div class="row">
+    <%= link_to 'Home', root_path %>
+    <%= link_to 'Projects', projects_path %>
+    <%= link_to 'Subjects', subjects_path %>
+    <%= link_to 'Tickets', objectives_path %>
+
+    <p id="notice"><%= notice %></p>
+
+    <h1>Listing Projects</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Project State</th>
+          <th>Project Type</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= link_to project.number, project %></td>
+            <td><%= project.name %></td>
+            <td><%= project.description %></td>
+            <% if project.project_state  %>
+                <td><%= project.project_state.name %></td>
+            <% else %>
+                <td><%= " " %></td>
+            <% end %>
+            <td><%= project.project_type %></td>
+            <td><%= link_to 'Edit', edit_project_path(project) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Project', new_project_path %>
+  </div>
+</div>

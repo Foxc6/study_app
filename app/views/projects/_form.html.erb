@@ -1,0 +1,50 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+        <%= f.label :project_state %>
+        <% unless @project.project_state_id.blank? %>
+            <%= f.collection_select "project_state_id",
+            @project_states, "id", "name",
+            {include_blank: true, selected: @project.project_state_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Project State', 'value' => @project.project_state_id} } %>
+        <% else %>
+            <%= f.collection_select "project_state_id",
+            @project_states, "id", "name",
+            {include_blank: true, selected: @project.project_state_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Project State', 'value' => @project.project_state_id} } %>
+        <% end %> 
+      </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.datetime_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+
+  <%= render :partial => 'projects/actions', :locals => {:projects => @projects, :f => f} %>
+<% end %>

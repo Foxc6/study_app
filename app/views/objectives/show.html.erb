@@ -1,0 +1,38 @@
+<div class="has-limit">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="edit-form">
+
+        <h2><%= link_to @objective.project.name, @project %></h2>
+        <h2>Ticket #<%= @objective.number %></h2>
+
+        <p>
+          <strong>Description:</strong>
+          <p><%= @objective.description %></p>
+          <strong>Notes:</strong>
+          <p style="white-space: pre;" ><%= simple_format(@objective.notes) %></p>
+        </p>
+
+        <p>
+          <strong>Parent:</strong>
+          <%= @objective.parent_id %>
+        </p>
+
+        <p>
+          <strong>Position:</strong>
+          <%= @objective.position %>
+        </p>
+
+        <p>
+          <strong>Subject:</strong>
+          <% if @objective.subject %>
+            <%= @objective.subject.name %>
+          <% end %>
+        </p>
+
+        <%= link_to 'Edit', edit_objective_path(@objective) %> |
+        <%= link_to 'Back to Objectives', objectives_path %>
+      </div>
+    </div>
+  </div>
+</div>

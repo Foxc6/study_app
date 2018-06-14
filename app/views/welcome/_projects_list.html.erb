@@ -1,0 +1,24 @@
+<% if @projects.any? %>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.number, project_path(project) %></td>
+        <td><%= link_to project.name, project_path(project) %></td>
+        <td><%= project.project_state_id%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>No projects yet.</p>
+<% end %>

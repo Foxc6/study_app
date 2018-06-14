@@ -1,0 +1,43 @@
+<div class="has-limit">
+  <div class="row">
+
+    <%= link_to 'Home', root_path %>
+    <%= link_to 'Projects', projects_path %>
+    <%= link_to 'Subjects', subjects_path %>
+    <%= link_to 'Tickets', objectives_path %>
+
+    <p id="notice"><%= notice %></p>
+
+    <h1>Listing Subjects</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Slug</th>
+          <th>Parent</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @subjects.each do |subject| %>
+          <tr>
+            <td><%= link_to subject.name, subject %></td>
+            <td><%= subject.slug %></td>
+            <% if subject.parent  %>
+                <td><%= subject.parent.name %></td>
+            <% else %>
+                <td><%= " " %></td>
+            <% end %>
+            <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Subject', new_subject_path %>
+  </div>
+</div>

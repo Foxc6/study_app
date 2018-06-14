@@ -1,0 +1,45 @@
+<div class="has-limit">
+  <div class="row">
+    <%= link_to 'Home', root_path %>
+    <%= link_to 'Projects', projects_path %>
+    <%= link_to 'Subjects', subjects_path %>
+    <%= link_to 'Tickets', objectives_path %>
+
+    <p id="notice"><%= notice %></p>
+
+    <h1>Tickets</h1>
+
+    <%= link_to 'New Objective', new_objective_path %>
+
+    <table>
+      <thead class="pretty">
+        <tr>
+          <th class="centered">#</th>
+          <th class="centered">Project</th>
+          <th class="centered">Subject</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @active_objectives.each do |objective| %>
+          <tr class="override">
+            <td class="centered"><%= link_to objective.number, objective %></td>
+            <td class="centered"><%= objective.project.name %></td>
+            <td class="centered">
+              <% if objective.subject  %>
+                <%= objective.subject.name %></td>
+              <% end %>
+            <td><%= objective.description %></td>
+            <td class="centered"><%= link_to 'Edit', edit_objective_path(objective) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Objective', new_objective_path %>
+  </div>
+</div>

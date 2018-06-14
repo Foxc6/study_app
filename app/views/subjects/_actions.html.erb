@@ -1,0 +1,10 @@
+<div class="actions">
+  <%= f.submit "Save" %>
+  <%= f.submit "Save and Continue" %>
+  <% if @subject %>
+    <%= link_to 'Cancel', @subject %>
+    <% else %>
+    <%= link_to 'Cancel', subjects_path %>
+  <% end %>
+
+</div>

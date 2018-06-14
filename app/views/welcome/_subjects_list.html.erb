@@ -1,0 +1,22 @@
+<% if @subjects.any? %>
+<table>
+  <thead>
+    <tr>
+      <th>Parent Subject</th>
+      <th>Subject Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= link_to subject.parent.name, subject_path(subject) %></td>
+        <td><%= link_to subject.name, subject_path(subject) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>No subjects yet.</p>
+<% end %>

@@ -1,0 +1,88 @@
+<div class="has-limit">
+  <div class="row">
+    <%= form_for(@objective) do |f| %>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group edit-pro-estimate">
+        <h2><%= action_name.capitalize %> Objective</h2>
+      </div>
+      <% if @objective.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@objective.errors.count, "error") %> prohibited this objective from being saved:</h2>
+
+          <ul>
+          <% @objective.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :project %>
+        <% unless @objective.project_id.blank? %>
+            <%= f.collection_select "project_id",
+            @projects, "id", "name",
+            {include_blank: true, selected: @objective.project_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Project', 'value' => @objective.project_id} } %>
+        <% else %>
+            <%= f.collection_select "project_id",
+            @projects, "id", "name",
+            {include_blank: true, selected: @objective.project_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Project', 'value' => @objective.project_id} } %>
+        <% end %> 
+      </div>
+
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_field :description %>
+      </div>
+
+      <div class="field">
+        <%= f.label :notes %><br>
+        <%= f.text_area :notes %>
+      </div>
+
+      <div class="field">
+        <%= f.label :parent_id %><br>
+        <%= f.number_field :parent_id %>
+      </div>
+
+      <div class="field">
+        <%= f.label :position %><br>
+        <%= f.number_field :position %>
+      </div>
+
+      <div class="field">
+        <%= f.label :subject %>
+        <% unless @objective.subject_id.blank? %>
+            <%= f.collection_select "subject_id",
+            @subjects, "id", "name",
+            {include_blank: true, selected: @objective.subject_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Subject', 'value' => @objective.subject_id} } %>
+        <% else %>
+            <%= f.collection_select "subject_id",
+            @subjects, "id", "name",
+            {include_blank: true, selected: @objective.subject_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Subject', 'value' => @objective.subject_id} } %>
+        <% end %> 
+      </div>
+
+      <div class="field">
+        <%= f.label :objective_status %>
+        <% unless @objective.objective_status_id.blank? %>
+            <%= f.collection_select "objective_status_id",
+            @statuses, "id", "name",
+            {include_blank: true, selected: @objective.objective_status_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Status', 'value' => @objective.objective_status_id} } %>
+        <% else %>
+            <%= f.collection_select "objective_status_id",
+            @statuses, "id", "name",
+            {include_blank: true, selected: @objective.objective_status_id},
+          {class: 'chosen-select', :data => {'placeholder' => 'Status', 'value' => @objective.objective_status_id} } %>
+        <% end %> 
+      </div>
+
+      <%= render :partial => 'objectives/actions', :locals => {:objectives => @objectives, :f => f} %>
+    <% end %>
+  </div>
+</div>

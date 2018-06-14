@@ -1,0 +1,19 @@
+<div class="has-limit">
+  <div class="row">
+	<% if @objectives.any? %>
+	<table class="objective">
+	  <tbody>
+	  	<h2>Open Tickets</h2> <%= link_to 'Add Ticket', new_objective_path(@project) %>
+	    <% @objectives.each do |obj| %>
+	      <tr>
+	        <td><%= link_to obj.number, obj %></td>
+	        <td><%= obj.description %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<% else %>
+	<p class="empty">No existing tickets for this proejct.</p>
+	<% end %>
+  </div>
+</div>
